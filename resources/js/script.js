@@ -3,7 +3,6 @@ Author       : Dreamguys
 Template Name: POS - Bootstrap Admin Template
 */
 
-
 $(document).ready(function(){
 
 	// Variables declarations
@@ -679,7 +678,7 @@ $(document).ready(function(){
 		}
 		
 	});
-	  
+	
 
 });
 

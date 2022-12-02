@@ -20,11 +20,11 @@
                                         <option>Customer Name</option>
                                     </select>
                                 </div>
-                                <div class="col-lg-2 col-sm-2 col-2 ps-0">
+                                <!-- <div class="col-lg-2 col-sm-2 col-2 ps-0">
                                     <div class="add-icon">
                                         <span><img src="{{ URL::asset('/assets/img/icons/plus1.svg')}}" alt="img"></span>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -38,16 +38,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 col-12">
-                        <div class="form-group">
-                            <label>Supplier</label>
-                            <select class="select">
-                                <option>Store 1</option>
-                                <option>Store 2</option>
-                            </select>
-                        </div>
-                    </div>
+                    </div>                  
                     <div class="col-lg-12 col-sm-6 col-12">
                         <div class="form-group">
                             <label>Product Name</label>
@@ -134,19 +125,7 @@
                 <div class="row">
                     <div class="col-lg-3 col-sm-6 col-12">
                         <div class="form-group">
-                            <label>Order Tax</label>
-                            <input type="text">
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 col-12">
-                        <div class="form-group">
-                            <label>Discount</label>
-                            <input type="text">
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 col-12">
-                        <div class="form-group">
-                            <label>Shipping</label>
+                            <label>paid amount</label>
                             <input type="text">
                         </div>
                     </div>
@@ -161,27 +140,11 @@
                         </div>
                     </div>
                     <div class="row">
+                     
                         <div class="col-lg-6 ">
                             <div class="total-order w-100 max-widthauto m-auto mb-4">
                                 <ul>
-                                    <li>
-                                        <h4>Order Tax</h4>
-                                        <h5>$ 0.00 (0.00%)</h5>
-                                    </li>
-                                    <li>
-                                        <h4>Discount	</h4>
-                                        <h5>$ 0.00</h5>
-                                    </li>	
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 ">
-                            <div class="total-order w-100 max-widthauto m-auto mb-4">
-                                <ul>
-                                    <li>
-                                        <h4>Shipping</h4>
-                                        <h5>$ 0.00</h5>
-                                    </li>
+                                    
                                     <li class="total">
                                         <h4>Grand Total</h4>
                                         <h5>$ 1750.00</h5>

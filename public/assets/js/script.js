@@ -4,7 +4,75 @@ Template Name: POS - Bootstrap Admin Template
 */
 // #brand ajax 
 // $(document).ready(function(){
+	function addproducttocart(){
+	var productid= document.getElementById('productlist');
+	console.log(productid.value);
+	var producttable = document.getElementById('producttable');
 
+	var tablerow="";
+	$.ajaxSetup({
+		headers: {
+			  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		  }
+	  });
+	  $.ajax({
+			
+		type:"GET",
+		url:"getproduct/"+productid.value,
+		// data:{id : cate_id},
+		dataType:"Json",
+		success:function(response){
+			console.log(response['product'][0])
+			tablerow = `   <tr>
+			<td>1</td>
+			<td class="productimgname">
+				<a class="product-img">
+					<img src="{{asset('storage/product_img/`+response['product'][0]['product_img']+`)}}" alt="product">
+				</a>
+				<input type="hidden" name="product_id[]" value="`+response['product'][0]['product_id']+` "/> 
+				<a href="javascript:void(0);">`+response['product'][0]['product_name']+`</a>
+			</td>
+			<td><input onclick="this.readOnly=false" onchange="totol_price()" onblur="this.readOnly=true" readonly type="number" name="quantity[]" value="1" class="form-control"></td>
+			<td> <input onclick="this.readOnly=false" onchange="totol_price()" onblur="this.readOnly=true" readonly type="number" class="form-control" value="`+response['product'][0]['product_price']+`" name="Amount[]"></td>
+			<td class="totalamount">`+response['product'][0]['product_price'] +`</td>
+			<td>
+			<a onclick="deleteProduct(this)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+			</td>
+		</tr>`;
+		producttable.innerHTML+= tablerow
+		totol_price();
+			// console.log(response['brands'])
+			// console.log( Object.keys(response['brands']).length)
+
+		},
+		error: function(xhr, status, error){
+		console.error(xhr);}
+
+	});
+	}
+	function removeradonly(r){
+	}
+	function totol_price(){
+		var quantity=document.getElementsByName('quantity[]');
+		var price=document.getElementsByName('Amount[]');
+		var totalproductamount=document.getElementsByClassName('totalamount');
+		var totalamount= document.getElementById('totalamount')
+		var k=0;
+		for (var i = 0; i < quantity.length; i++) {
+				k +=Number(quantity[i].value)*Number(price[i].value);
+				//totalproductamount[i].innerHTML=  Number(quantity[i].value)*Number(price[i].value);
+				//console.log(totalproductamount[i])
+		}
+		//console.log(k)
+		totalamount.value = k;
+
+	}
+	function deleteProduct(r) {
+		var i = r.parentNode.parentNode.rowIndex;
+		document.getElementById("producttable1").deleteRow(i);
+		totol_price()
+	  }
+	
 	function get_brands(){
 		var cate_id = document.getElementById('category_name').value;
 		var sub_cate_filed= document.getElementById("sub_category");

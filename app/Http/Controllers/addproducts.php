@@ -137,4 +137,9 @@ class addproducts extends Controller
             ]);
         }
     }
+    public function fetch_product($id){
+        
+        $products =  DB::table('products')->where('product_id',$id)->get();
+        return response()->json(['product'=>$products,]);
+    }
 }

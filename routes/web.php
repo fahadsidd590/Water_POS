@@ -9,6 +9,7 @@ use App\Http\Controllers\CustomerController;
 
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\supplierController;
+use App\Http\Controllers\salesController;
 use App\Models\subcategory;
 use App\Models\supplier;
 
@@ -57,7 +58,7 @@ Route::get('product/{id}', [addproducts::class, 'destroy']);
 Route::get('product_export', [addproducts::class, 'export'])->name('product.export');
 Route::get('product_export_pdf', [addproducts::class, 'create_pdf']);
 Route::post('/addcustomer', [CustomerController::class, 'store'])->name('add-customer');
-
+Route::post('/addcustomeronsales', [CustomerController::class, 'storeajax'])->name('addcustomeronsales');
 Route::get('/addcustomer', function () {
     return view('addcustomer');
 })->name('addcustomer');
@@ -73,10 +74,17 @@ Route::post('/addsupplier', [supplierController::class, 'store'])->name('add-sup
 Route::get('supplierlist', [supplierController::class, 'index'])->name('supplierlist');
 Route::get('editsupplier/{id}',[supplierController::class ,'edit'])->name('editsupplier');
 Route::post('editsupplier/{id}', [supplierController::class, 'update'])->name('editsupplier2');
-// Route::get('/editsupplier', function () {
-//     return view('editsupplier');
-// })->name('editsupplier');
 
+// Route::resource('/addcustomer', [CustomerController::class, 'storeajax']);
+// sales part
+Route::get('add-sales', [salesController::class, 'index'])->name('add-sales');
+Route::get('getproduct/{id}', [addproducts::class, 'fetch_product']);
+Route::post('addsales', [salesController::class, 'store'])->name('addsales');
+Route::get('saleslist', [salesController::class, 'getsales'])->name('saleslist');
+Route::get('sales/{id}',[CustomerController::class ,'edit'])->name('editcustomer');
+// Route::get('/saleslist', function () {
+//     return view('saleslist');
+// })->name('saleslist');
 
 
 Route::get('/', function () {
@@ -88,9 +96,7 @@ Route::get('/index', function () {
 Route::get('/activities', function () {
     return view('activities');
 })->name('activities');
-Route::get('/add-sales', function () {
-    return view('add-sales');
-})->name('add-sales');
+
 
 Route::get('/addpurchase', function () {
     return view('addpurchase');
@@ -377,9 +383,7 @@ Route::get('/ribbon', function () {
 Route::get('/sales-details', function () {
     return view('sales-details');
 })->name('sales-details');
-Route::get('/saleslist', function () {
-    return view('saleslist');
-})->name('saleslist');
+
 Route::get('/salesreport', function () {
     return view('salesreport');
 })->name('salesreport');
